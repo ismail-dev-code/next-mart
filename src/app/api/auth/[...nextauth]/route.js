@@ -1,44 +1,62 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+
 const handler = NextAuth({
+  providers: [
+    // Google OAuth Provider
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
 
-    providers: [
-  CredentialsProvider({
-    // The name to display on the sign in form (e.g. 'Sign in with...')
-    name: 'Credentials',
-    // The credentials is used to generate a suitable form on the sign in page.
-    // You can specify whatever fields you are expecting to be submitted.
-    // e.g. domain, username, password, 2FA token, etc.
-    // You can pass any HTML attribute to the <input> tag through the object.
-    credentials: {
-      username: { label: "Username", type: "text", placeholder: "jsmith" },
-      password: { label: "Password", type: "password" },
-      email: { label: "Email", type: "email" }
-    },
-    async authorize(credentials, req) {
-      console.log("user credentials", credentials);
-      // You need to provide your own logic here that takes the credentials
-      // submitted and returns either a object representing a user or value
-      // that is false/null if the credentials are invalid.
-      // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-      // You can also use the `req` object to obtain additional parameters
-      // (i.e., the request IP address)
-      const res = await fetch("/login", {
-        method: 'POST',
-        body: JSON.stringify(credentials),
-        headers: { "Content-Type": "application/json" }
-      })
-      const user = await res.json()
+    // Credentials Provider
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        // Replace this with your actual authentication logic, e.g., MongoDB
+        // Example static login
+        if (
+          credentials?.email === "test@test.com" &&
+          credentials?.password === "123456"
+        ) {
+          return { id: "1", name: "Test User", email: "test@test.com" };
+        }
+        // Return null if invalid credentials
+        return null;
+      },
+    }),
+  ],
 
-      // If no error and we have user data, return it
-      if (res.ok && user) {
-        return user
+  // Optional pages override
+  pages: {
+    signIn: "/login", // Redirect to custom login page
+  },
+
+  session: {
+    strategy: "jwt", // Use JWT for session
+  },
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
       }
-      // Return null if user data could not be retrieved
-      return null
-    }
-  })
-]
-})
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
+  },
 
-export { handler as GET, handler as POST }
+  secret: process.env.NEXTAUTH_SECRET,
+});
+
+export { handler as GET, handler as POST };

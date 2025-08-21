@@ -21,7 +21,10 @@ const publicLinks = [
 ];
 
 export default function Navbar() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession({
+  required: false,
+  refetchInterval: 5, 
+});
   const pathname = usePathname() || "/";
   const [open, setOpen] = useState(false);
 
@@ -31,8 +34,8 @@ export default function Navbar() {
   const dashboardLinks = session
     ? [
         {
-          href: "/dashboard/add-product",
-          label: "Add Product",
+          href: "/dashboard/",
+          label: "Dashboard",
           icon: <PlusCircle size={18} />,
         },
       ]
@@ -76,7 +79,7 @@ export default function Navbar() {
 
               {/* Dashboard Links */}
               {dashboardLinks.length > 0 && (
-                <div className="flex items-center ml-3 space-x-1">
+                <div className="flex items-center space-x-1">
                   {dashboardLinks.map(({ href, label, icon }) => (
                     <Link
                       key={href}

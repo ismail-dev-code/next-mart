@@ -1,19 +1,20 @@
 "use client";
 
 import { Truck, ShieldCheck, Headphones, CreditCard } from "lucide-react";
-import UserInfo from "./UserInfo";
 
 export default function WhyNextMart() {
   const highlights = [
     {
       icon: <Truck size={28} className="text-amber-400" />,
       title: "Fast & Free Delivery",
-      description: "Get your orders delivered quickly and without extra charges on eligible items.",
+      description:
+        "Get your orders delivered quickly and without extra charges on eligible items.",
     },
     {
       icon: <ShieldCheck size={28} className="text-sky-300" />,
       title: "Secure Shopping",
-      description: "Shop confidently with our secure checkout and buyer protection.",
+      description:
+        "Shop confidently with our secure checkout and buyer protection.",
     },
     {
       icon: <Headphones size={28} className="text-amber-400" />,
@@ -31,11 +32,9 @@ export default function WhyNextMart() {
     <section className="bg-slate-900 text-slate-300 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h2 className="text-2xl font-bold text-center mb-10">
-          Why Shop with{" "}
-          <span className="text-sky-300">Next</span>
+          Why Shop with <span className="text-sky-300">Next</span>
           <span className="text-amber-400">Mart</span>?
         </h2>
-        <UserInfo/>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {highlights.map((item, index) => (
