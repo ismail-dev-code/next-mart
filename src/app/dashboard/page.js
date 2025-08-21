@@ -38,7 +38,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border rounded shadow">
+    <div className="max-w-md mx-auto my-10 p-6 border rounded shadow">
       <h1 className="text-2xl font-bold mb-4">Add Product</h1>
       {message && <p className="mb-4 text-green-600">{message}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -75,7 +75,7 @@ export default function Dashboard() {
         <div>
           <label className="block mb-1">Image URL</label>
           <input
-            type="text"
+            type="url"
             value={img}
             onChange={(e) => setImg(e.target.value)}
             className="w-full border px-3 py-2 rounded"
@@ -83,7 +83,7 @@ export default function Dashboard() {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          className="w-full bg-slate-600 cursor-pointer text-white py-2 px-4  rounded hover:bg-slate-700"
         >
           Add Product
         </button>

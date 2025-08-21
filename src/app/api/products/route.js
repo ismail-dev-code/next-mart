@@ -9,7 +9,7 @@ export async function GET() {
     const database = client.db("emaJohnDB"); 
     const collection = database.collection("products");
 
-    const products = await collection.find({}).toArray();
+    const products = await collection.find({}).sort({ _id: -1 }).toArray();
     await client.close();
 
     return new Response(JSON.stringify(products), {
