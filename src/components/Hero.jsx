@@ -22,7 +22,7 @@ export default function HeroSection() {
   A digital platform where customers can easily discover and buy products.
 </p>
 
-          <Link href={"/products"} className="bg-amber-400 text-black cursor-pointer font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+          <Link href={"/products"} className="bg-amber-400 hover:bg-amber-500 text-black cursor-pointer font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl">
           Start Shopping
           </Link>
         </div>

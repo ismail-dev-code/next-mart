@@ -8,12 +8,12 @@ import {
   Home,
   Box,
   PlusCircle,
-  LogIn,
   LogOut,
   Menu,
   X,
   ShoppingBag,
 } from "lucide-react";
+import LoginButton from "./LoginButton"; // make sure the path is correct
 
 const publicLinks = [
   { href: "/", label: "Home", icon: <Home size={18} /> },
@@ -106,13 +106,7 @@ export default function Navbar() {
                   Logout
                 </button>
               ) : (
-                <Link
-                  href="/login"
-                  className="flex items-center gap-2 px-3 py-2 rounded-md border border-slate-700 text-slate-300 hover:text-amber-400 hover:bg-slate-800 text-sm font-medium"
-                >
-                  <LogIn size={16} />
-                  Login
-                </Link>
+                <LoginButton />
               )}
             </div>
 
@@ -183,14 +177,7 @@ export default function Navbar() {
                     Logout
                   </button>
                 ) : (
-                  <Link
-                    href="/login"
-                    onClick={() => setOpen(false)}
-                    className="flex-1 flex items-center gap-2 justify-center px-3 py-2 rounded-md border border-slate-700 text-slate-300 hover:text-amber-400 hover:bg-slate-800 text-sm font-medium"
-                  >
-                    <LogIn size={16} />
-                    Login
-                  </Link>
+                  <LoginButton />
                 )}
               </div>
             </div>

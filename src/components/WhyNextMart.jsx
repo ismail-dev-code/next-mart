@@ -1,6 +1,7 @@
 "use client";
 
 import { Truck, ShieldCheck, Headphones, CreditCard } from "lucide-react";
+import UserInfo from "./UserInfo";
 
 export default function WhyNextMart() {
   const highlights = [
@@ -34,6 +35,7 @@ export default function WhyNextMart() {
           <span className="text-sky-300">Next</span>
           <span className="text-amber-400">Mart</span>?
         </h2>
+        <UserInfo/>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {highlights.map((item, index) => (
