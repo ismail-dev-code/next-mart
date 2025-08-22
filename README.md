@@ -1,7 +1,7 @@
 # 🛍️ Next-Mart Product App  
 
 A product management application built with **Next.js 15 (App Router)** and **NextAuth.js** for authentication.  
-The app includes a public landing page, product listing & details, and a protected dashboard to add products.  
+The app includes a public landing page, product listing & details and a protected dashboard to add products.  
 
 ---
 
@@ -32,13 +32,7 @@ The app includes a public landing page, product listing & details, and a protect
 
 ---
 
-## ✨ Optional Enhancements  
 
-- Loading spinner when submitting forms  
-- Toast notifications on successful product add  
-- Light/Dark theme toggle  
-
----
 
 ## 🛠️ Tech Stack  
 

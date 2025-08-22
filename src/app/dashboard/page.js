@@ -187,7 +187,7 @@ export default async function DashboardPage() {
             {/* Welcome Section */}
             <div className="bg-white dark:bg-gray-700 rounded-lg shadow-sm p-6">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                    Welcome back, {session?.user?.name || session?.user?.email}! 👋
+                    Welcome, {session?.user?.name || session?.user?.email}! 👋
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300">
                     Here is what is happening with your products today.

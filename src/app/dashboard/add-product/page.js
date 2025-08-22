@@ -3,14 +3,19 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import { Package, DollarSign, FileText, Image } from 'lucide-react';
+import { Package, DollarSign, FileText, Tag, Truck, User } from 'lucide-react';
 
 export default function AddProductPage() {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         price: '',
-        image: '',
+        img: '',
+        category: '',
+        stock: '',
+        shipping: '',
+        seller: '',
+       
     });
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -24,16 +29,28 @@ export default function AddProductPage() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: formData.name,
-                    description: formData.description,
+                    ...formData,
                     price: parseFloat(formData.price),
-                    image: formData.image || undefined,
+                    stock: parseInt(formData.stock),
+                    shipping: parseFloat(formData.shipping),
+                    rating: parseFloat(formData.rating),
+                    img: formData.img || undefined,
                 }),
             });
 
             if (response.ok) {
                 toast.success('Product added successfully!');
-                setFormData({ name: '', description: '', price: '', image: '' });
+                setFormData({
+                    name: '',
+                    description: '',
+                    price: '',
+                    img: '',
+                    category: '',
+                    stock: '',
+                    shipping: '',
+                    seller: '',
+                    rating: '',
+                });
                 router.push('/products');
             } else {
                 const error = await response.json();
@@ -76,11 +93,11 @@ export default function AddProductPage() {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Enter product name"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
-                {/* Product Description */}
+                {/* Description */}
                 <div>
                     <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         <FileText className="w-4 h-4 inline mr-2" />
@@ -94,74 +111,137 @@ export default function AddProductPage() {
                         value={formData.description}
                         onChange={handleInputChange}
                         placeholder="Describe your product in detail"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
-                {/* Product Price */}
+                {/* Price */}
                 <div>
                     <label htmlFor="price" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         <DollarSign className="w-4 h-4 inline mr-2" />
                         Price *
                     </label>
-                    <div className="relative">
-                        <span className="absolute left-3 top-2 text-gray-500 dark:text-gray-400">$</span>
-                        <input
-                            type="number"
-                            id="price"
-                            name="price"
-                            required
-                            min="0"
-                            step="0.01"
-                            value={formData.price}
-                            onChange={handleInputChange}
-                            placeholder="0.00"
-                            className="w-full pl-8 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        />
-                    </div>
+                    <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        required
+                        min="0"
+                        step="0.01"
+                        value={formData.price}
+                        onChange={handleInputChange}
+                        placeholder="0.00"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                    />
                 </div>
 
-                {/* Product Image URL */}
+                {/* Category */}
+                <div>
+                    <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <Tag className="w-4 h-4 inline mr-2" />
+                        Category *
+                    </label>
+                    <input
+                        type="text"
+                        id="category"
+                        name="category"
+                        required
+                        value={formData.category}
+                        onChange={handleInputChange}
+                        placeholder="e.g., Fruits, Vegetables, Electronics"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+
+                {/* Stock */}
+                <div>
+                    <label htmlFor="stock" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Stock *
+                    </label>
+                    <input
+                        type="number"
+                        id="stock"
+                        name="stock"
+                        required
+                        min="0"
+                        value={formData.stock}
+                        onChange={handleInputChange}
+                        placeholder="Available stock"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+
+                {/* Shipping */}
+                <div>
+                    <label htmlFor="shipping" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <Truck className="w-4 h-4 inline mr-2" />
+                        Shipping Cost ($)
+                    </label>
+                    <input
+                        type="number"
+                        id="shipping"
+                        name="shipping"
+                        step="0.01"
+                        value={formData.shipping}
+                        onChange={handleInputChange}
+                        placeholder="Enter shipping cost"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+
+                {/* Seller */}
+                <div>
+                    <label htmlFor="seller" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <User className="w-4 h-4 inline mr-2" />
+                        Seller *
+                    </label>
+                    <input
+                        type="text"
+                        id="seller"
+                        name="seller"
+                        required
+                        value={formData.seller}
+                        onChange={handleInputChange}
+                        placeholder="Enter seller name"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+
+                {/* img URL */}
                 <div>
                     <label htmlFor="image" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        <Image className="w-4 h-4 inline mr-2" />
-                        Image URL (Optional)
+                        image URL
                     </label>
                     <input
                         type="url"
-                        id="image"
-                        name="image"
-                        value={formData.image}
+                        id="img"
+                        name="img"
+                        value={formData.img}
                         onChange={handleInputChange}
-                        placeholder="https://example.com/image.jpg"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="https://example.com/img.jpg"
+                        className="w-full px-3 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
                     />
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Provide a URL to an image of your product (JPG, PNG, or GIF)
-                    </p>
                 </div>
 
-                {/* Image Preview */}
-                {formData.image && (
+                {/* Preview */}
+                {formData.img && (
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Preview</label>
-                        <div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 bg-gray-50 dark:bg-gray-800">
-                            <img
-                                src={formData.image}
-                                alt="Product preview"
-                                className="max-w-xs max-h-48 object-contain rounded"
-                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                            />
-                        </div>
+                        <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Preview</p>
+                        <img
+                            src={formData.img}
+                            alt="Preview"
+                            className="max-w-xs max-h-48 object-contain rounded border border-gray-200 dark:border-gray-600"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                        />
                     </div>
                 )}
 
-                {/* Form Actions */}
+                {/* Actions */}
                 <div className="flex items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-700">
                     <button
                         type="button"
                         onClick={() => router.push('/products')}
-                        className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
                         Cancel
                     </button>
@@ -169,7 +249,7 @@ export default function AddProductPage() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="px-6 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                        className="px-6 py-2 text-sm font-medium text-white bg-slate-800 cursor-pointer rounded-md hover:bg-slate-900 disabled:opacity-50 flex items-center"
                     >
                         {isLoading ? (
                             <>

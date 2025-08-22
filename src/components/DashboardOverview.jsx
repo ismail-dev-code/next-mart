@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 
 const DashboardOverview = () => {
     const { data: session } = useSession()
-    // console.log("Session:", session);
+   
 
     return (
         <div className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700">
@@ -15,7 +15,7 @@ const DashboardOverview = () => {
                     <div className="flex items-center space-x-4">
                         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
                         <span className="text-sm text-gray-500 dark:text-gray-300">
-                            Welcome back, {session?.user?.name || session?.user?.email}!
+                            Welcome, {session?.user?.name || session?.user?.email}!
                         </span>
                     </div>
                     <Link
