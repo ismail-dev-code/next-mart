@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
 async function fetchProducts() {
@@ -53,6 +54,9 @@ export default function HighlightProducts() {
             <h2 className="text-lg font-semibold mb-1 line-clamp-1">{product.name}</h2>
             <p className="text-gray-500 mb-3 text-sm line-clamp-2">{product.description}</p>
             <p className="text-blue-600 font-bold text-lg">${product.price}</p>
+            <Link key={product._id} href={`/products/${product._id}`}>
+            Details
+            </Link>
           </div>
         ))}
       </div>
