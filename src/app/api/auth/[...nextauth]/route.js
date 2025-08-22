@@ -32,31 +32,26 @@ const handler = NextAuth({
     }),
   ],
 
-  // Optional pages override
   pages: {
-    signIn: "/login", // Redirect to custom login page
-  },
-
-  session: {
-    strategy: "jwt", // Use JWT for session
-  },
-
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
+        signIn: "/login",
     },
-    async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id;
-      }
-      return session;
-    },
-  },
 
-  secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "jwt",
+    },
+
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) token.id = user.id;
+            return token;
+        },
+        async session({ session, token }) {
+            if (token) session.user.id = token.id;
+            return session;
+        },
+    },
+
+    secret: process.env.NEXTAUTH_SECRET,
 });
 
 export { handler as GET, handler as POST };

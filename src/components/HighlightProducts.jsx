@@ -49,7 +49,7 @@ export default function HighlightProducts() {
 
   return (
     <div className="min-h-screen p-8 text-white bg-slate-900">
-      <h1 className="text-3xl font-bold text-center mb-10">
+      <h1 className="md:text-3xl text-2xl font-bold text-center mb-10">
         Highlighted Products
       </h1>
 

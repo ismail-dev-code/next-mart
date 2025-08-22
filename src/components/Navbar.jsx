@@ -102,7 +102,7 @@ export default function Navbar() {
             <div className="hidden md:flex items-center space-x-3">
               {session ? (
                 <button
-                  onClick={() => signOut()}
+                  onClick={() => signOut({ callbackUrl: '/login' })} 
                   className="flex items-center gap-2 px-3 py-2 rounded-md bg-red-500 hover:bg-red-600 cursor-pointer text-white text-sm font-medium"
                 >
                   <LogOut size={16} />
@@ -171,7 +171,7 @@ export default function Navbar() {
                 {session ? (
                   <button
                     onClick={() => {
-                      signOut();
+                      signOut({ callbackUrl: '/login' })
                       setOpen(false);
                     }}
                     className="flex-1 flex items-center gap-2 justify-center px-3 py-2 rounded-md bg-red-500 hover:bg-red-600 text-white text-sm font-medium"

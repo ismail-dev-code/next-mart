@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 
-export default function LoadingSpinner({ message = "Loading..." }) {
+export default function LoadingSpinner({ message = "Loading, please wait..." }) {
       useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);

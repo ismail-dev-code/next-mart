@@ -58,7 +58,7 @@ export default async function ProductDetails({ params }) {
               </p>
               <p>
                 <span className="font-semibold">Price:</span>{" "}
-                <span className="text-blue-600 font-bold text-lg">
+                <span className="text-sky-600 font-bold text-lg">
                   ${product.price}
                 </span>
               </p>

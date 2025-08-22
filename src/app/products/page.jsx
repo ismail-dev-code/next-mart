@@ -49,7 +49,7 @@ export default async function ProductsList() {
 
               {/* Price + Button */}
               <div className="flex items-center justify-between mt-auto">
-                <p className="text-blue-600 font-bold text-lg">
+                <p className="text-sky-900 font-bold text-lg">
                   ${product.price}
                 </p>
                 <Link
