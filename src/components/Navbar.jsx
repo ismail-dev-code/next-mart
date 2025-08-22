@@ -21,7 +21,7 @@ const publicLinks = [
 ];
 
 export default function Navbar() {
-  const { data: session, status } = useSession({
+  const { data: session } = useSession({
   required: false,
   refetchInterval: 5, 
 });

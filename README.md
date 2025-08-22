@@ -8,23 +8,21 @@ The app includes a public landing page, product listing & details and a protecte
 ## 🚀 Features  
 
 - **Landing Page (/**)  
-  - Includes **Navbar, Hero, Product Highlights, Footer**  
-  - Navigation to Login and Products  
-  - No authentication required  
+  - **Navbar, Hero, Product Highlights, Footer**  
+ 
 
 - **Authentication (/login)**  
   - Login with **NextAuth.js** (Google or credentials)  
   - Redirects to `/products` after login  
 
 - **Product List (/products)**  
-  - Publicly accessible  
-  - Displays list of products from mock backend/file  
+  - Publicly accessible   
   - Each product has: **Name, Description, Price, Details button**  
 
 - **Product Details (/products/[id])**  
   - Shows full details of a product  
   - Publicly accessible  
-
+ - Each product has: **Name, Description, Category, Stock, Seller, Rating, Price, Details button**  
 - **Protected Page: Add Product (/dashboard/add-product)**  
   - Accessible only when logged in  
   - Product form to add and save new product  
@@ -39,7 +37,7 @@ The app includes a public landing page, product listing & details and a protecte
 - **Next.js 15 (App Router)**  
 - **NextAuth.js** (Authentication)  
 - **TailwindCSS** (Styling)  
-- **Route Handlers (/api)** for mock backend  
+- **Route Handlers (/api)**  
 
 ---
 
