@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Globe } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -34,13 +35,10 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4">
       <div className="max-w-md w-full bg-slate-800 p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold text-white mb-6 text-center">
-          Welcome to{" "}
-          <span className="text-sky-300">Next</span>
+          Welcome to <span className="text-sky-300">Next</span>
           <span className="text-amber-400">Mart</span>
         </h1>
-        <p className="text-slate-300 text-center mb-6">
-          Please login with <span className="text-sky-300">test@gmail.com</span> <span className="text-amber-400">Password: 123456</span>
-        </p>
+      
 
         <form onSubmit={handleCredentialsLogin} className="space-y-4">
           <div>
@@ -84,18 +82,19 @@ export default function LoginPage() {
           <span className="text-slate-400">Or login using</span>
           <button
             onClick={handleGoogleLogin}
-            className="flex items-center gap-2 px-4 py-2 rounded-md bg-white hover:bg-gray-100 transition font-medium"
+            className="flex items-center gap-2 cursor-pointer px-4 py-2 rounded-md bg-white hover:bg-gray-100 transition font-medium"
           >
+            <Globe size={20} />
             Google
           </button>
-        </div> 
+        </div>
 
-        <p className="mt-6 text-sm text-slate-400 text-center">
+        {/* <p className="mt-6 text-sm text-slate-400 text-center">
           Don’t have an account?{" "}
           <a href="/register" className="text-amber-400 hover:underline">
             Create one
           </a>
-        </p>
+        </p> */}
       </div>
     </div>
   );
