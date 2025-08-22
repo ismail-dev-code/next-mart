@@ -13,7 +13,7 @@ import {
   X,
   ShoppingBag,
 } from "lucide-react";
-import LoginButton from "./LoginButton"; // make sure the path is correct
+import LoginButton from "./LoginButton"; 
 
 const publicLinks = [
   { href: "/", label: "Home", icon: <Home size={18} /> },
@@ -103,7 +103,7 @@ export default function Navbar() {
               {session ? (
                 <button
                   onClick={() => signOut()}
-                  className="flex items-center gap-2 px-3 py-2 rounded-md bg-red-500 hover:bg-red-600 text-white text-sm font-medium"
+                  className="flex items-center gap-2 px-3 py-2 rounded-md bg-red-500 hover:bg-red-600 cursor-pointer text-white text-sm font-medium"
                 >
                   <LogOut size={16} />
                   Logout
