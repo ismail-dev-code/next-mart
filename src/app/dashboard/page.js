@@ -6,13 +6,17 @@ export default function Dashboard() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [category, setCategory] = useState("");
+  const [seller, setSeller] = useState("");
+  const [shipping, setShipping] = useState("");
   const [img, setImg] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const product = { name, description, price: parseFloat(price), img };
+    const product = { name, description, price: parseFloat(price), img, stock, category, seller, shipping };
 
     try {
       const res = await fetch("/api/products", {
@@ -67,6 +71,50 @@ export default function Dashboard() {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            step="0.01"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1">Stock</label>
+          <input
+            type="number"
+            value={stock}
+            onChange={(e) => setStock(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            step="0.01"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1">Category</label>
+          <input
+            type="text"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            step="0.01"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1">Seller</label>
+          <input
+            type="text"
+            value={seller}
+            onChange={(e) => setSeller(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+            step="0.01"
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1">Shipping</label>
+          <input
+            type="number"
+            value={shipping}
+            onChange={(e) => setShipping(e.target.value)}
             className="w-full border px-3 py-2 rounded"
             step="0.01"
             required

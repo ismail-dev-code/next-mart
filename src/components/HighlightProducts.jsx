@@ -37,26 +37,50 @@ export default function HighlightProducts() {
 
   return (
     <div className="min-h-screen p-8 text-white bg-slate-900">
-      <h1 className="text-3xl font-bold text-center mb-8">Highlighted Products</h1>
+      <h1 className="text-3xl font-bold text-center mb-10">
+        Highlighted Products
+      </h1>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 text-slate-900 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
         {currentProducts.map((product) => (
           <div
             key={product._id}
-            className="border rounded-2xl p-5 shadow-md hover:shadow-xl transition bg-white"
+            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
           >
-            <img
-              src={product.img || "/placeholder.png"}
-              alt={product.name}
-              className="w-full h-56 object-cover mb-4 rounded-lg"
-            />
-            <h2 className="text-lg font-semibold mb-1 line-clamp-1">{product.name}</h2>
-            <p className="text-gray-500 mb-3 text-sm line-clamp-2">{product.description}</p>
-            <p className="text-blue-600 font-bold text-lg">${product.price}</p>
-            <Link key={product._id} href={`/products/${product._id}`}>
-            Details
-            </Link>
+            {/* Image */}
+            <div className="relative w-full h-52 overflow-hidden">
+              <img
+                src={product.img || "/placeholder.png"}
+                alt={product.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="p-5 text-slate-800 flex flex-col justify-between h-48">
+              <div>
+                <h2 className="text-lg font-semibold truncate mb-1">
+                  {product.name}
+                </h2>
+                <p className="text-gray-500 text-sm line-clamp-2 mb-3">
+                  {product.description}
+                </p>
+              </div>
+
+              {/* Price + Button */}
+              <div className="flex items-center justify-between mt-auto">
+                <p className="text-blue-600 font-bold text-lg">
+                  ${product.price}
+                </p>
+                <Link
+                  href={`/products/${product._id}`}
+                  className="px-3 py-1.5 text-sm font-medium rounded-lg bg-slate-800 text-white hover:bg-slate-900 transition"
+                >
+                  Details
+                </Link>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -66,8 +90,7 @@ export default function HighlightProducts() {
         <button
           onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
           disabled={currentPage === 1}
-          className="px-6 py-2 rounded-lg border text-sm font-medium transition
-                     hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="px-6 py-2 cursor-pointer rounded-lg border border-gray-500 text-sm font-medium transition hover:bg-gray-700 disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Previous
         </button>
@@ -75,8 +98,7 @@ export default function HighlightProducts() {
         <button
           onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className="px-6 py-2 rounded-lg border text-sm font-medium transition
-                     hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="px-6 py-2 rounded-lg border border-gray-500 text-sm font-medium transition hover:bg-gray-700 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Next
         </button>

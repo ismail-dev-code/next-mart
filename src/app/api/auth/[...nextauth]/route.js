@@ -21,10 +21,10 @@ const handler = NextAuth({
         // Replace this with your actual authentication logic, e.g., MongoDB
         // Example static login
         if (
-          credentials?.email === "test@test.com" &&
+          credentials?.email === "test@gmail.com" &&
           credentials?.password === "123456"
         ) {
-          return { id: "1", name: "Test User", email: "test@test.com" };
+          return { id: "1", name: "Test User", email: "test@gmail.com" };
         }
         // Return null if invalid credentials
         return null;
