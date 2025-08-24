@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-// Small inline spinner component
+
 function Spinner() {
   return (
     <div className="flex justify-center items-center py-20">
@@ -22,7 +22,7 @@ async function fetchProducts() {
 
 export default function HighlightProducts() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // <-- loading state
+  const [loading, setLoading] = useState(true); 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 5;
 
@@ -34,13 +34,13 @@ export default function HighlightProducts() {
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false); // stop loading once fetch is done
+        setLoading(false); 
       }
     }
     loadProducts();
   }, []);
 
-  // Pagination logic
+  // Pagination
   const indexOfLast = currentPage * productsPerPage;
   const indexOfFirst = indexOfLast - productsPerPage;
   const currentProducts = products.slice(indexOfFirst, indexOfLast);

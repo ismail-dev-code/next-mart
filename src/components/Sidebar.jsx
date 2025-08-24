@@ -7,7 +7,7 @@ const Sidebar = () => {
     return (
         <div className="lg:w-64 flex-shrink-0">
             <nav className="bg-white dark:bg-gray-700 rounded-lg shadow-sm p-6">
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Dashboard Overview</h2>
+                <h2 className="md:text-lg text-xs text-nowrap font-semibold text-gray-900 dark:text-white mb-4">Dashboard Overview</h2>
                 <ul className="space-y-2">
                     <li>
                         <Link

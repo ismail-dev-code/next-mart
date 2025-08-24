@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section className="bg-slate-900 text-white border-t border-slate-800">
       <div className="relative h-full md:h-[80vh] flex items-center justify-start text-left md:py-0 py-12 px-6 md:px-16">
-        {/* Background image with gradient overlay */}
+        {/* Background image  */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
